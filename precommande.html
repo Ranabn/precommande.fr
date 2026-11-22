@@ -1,0 +1,366 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Précommande Bloom Butlers</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&family=Source+Sans+3:wght@400;600;700&display=swap">
+<style>
+/* Mise en page : une colonne sur téléphone ; produits à gauche et récapitulatif collant à droite sur ordinateur. Identité reprise des tarifs pro Bloom Butlers. */
+:root{
+  --bg:#ffffff; --band:#ece6dc; --soft:#f5f1ea; --fg:#22211f; --muted:#6f6962; --line:#ddd6ca;
+  --accent:#a8634a; --accent-ink:#ffffff; --ok:#2f7d4f; --ok-soft:#e3f1e8; --warn:#9a5b00; --warn-soft:#fbefd9;
+  --display:"Lora", Georgia, "Times New Roman", serif;
+  --text:"Source Sans 3", "Segoe UI", system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#1a1917; --band:#2a2621; --soft:#24211d; --fg:#eee9e2; --muted:#a8a197; --line:#3a3630;
+    --accent:#d99a7f; --accent-ink:#1a1917; --ok:#72c495; --ok-soft:#1f3328; --warn:#e5aa55; --warn-soft:#3a2e1c; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#1a1917; --band:#2a2621; --soft:#24211d; --fg:#eee9e2; --muted:#a8a197; --line:#3a3630;
+  --accent:#d99a7f; --accent-ink:#1a1917; --ok:#72c495; --ok-soft:#1f3328; --warn:#e5aa55; --warn-soft:#3a2e1c; color-scheme:dark;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{background:var(--bg);color:var(--fg);font:16px/1.45 var(--text);margin:0}
+.wrap{max-width:1080px;margin:0 auto;padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px))}
+.hero{background:var(--band);margin-top:calc(-1 * env(safe-area-inset-top, 0px));padding-top:calc(env(safe-area-inset-top, 0px) + 22px);padding-bottom:22px}
+.brand{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;font-size:13px;color:var(--muted)}
+.brand b{font-weight:700;letter-spacing:3px;color:var(--fg);font-size:15px}
+h1{font:400 clamp(30px,6vw,42px)/1.08 var(--display);margin:14px 0 10px;text-wrap:balance}
+h1 em{color:var(--accent)}
+.deliv{background:var(--bg);border-radius:10px;padding:12px 14px;display:grid;gap:4px;max-width:720px}
+.deliv .l1{font:400 18px/1.3 var(--display)}
+.deliv .l1 b{color:var(--accent);font-weight:500}
+.deliv .l2{font-size:14px;color:var(--muted)}
+.deliv .l2 b{color:var(--fg)}
+main{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:28px;padding-block:24px 40px;align-items:start}
+@media (max-width:860px){main{grid-template-columns:minmax(0,1fr)}}
+h2{font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin:0 0 10px;font-weight:700}
+.hint{font-size:14px;color:var(--muted);margin:-4px 0 12px}
+section+section{margin-top:26px}
+.grp{font-size:12px;letter-spacing:1.4px;text-transform:uppercase;color:var(--muted);font-weight:700;padding:14px 0 6px;border-bottom:1px solid var(--line)}
+.prod{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 14px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line)}
+.prod .n{font-weight:600}
+.prod .n small{font-weight:400;color:var(--muted)}
+.prod .pr{font-size:14px;font-variant-numeric:tabular-nums}
+.prod .rv{font-size:13px;color:var(--muted)}
+.prod.on .n{color:var(--accent)}
+.step{display:flex;align-items:center;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--bg)}
+.step button{width:42px;height:42px;border:0;background:var(--soft);color:var(--fg);font-size:22px;line-height:1;cursor:pointer}
+.step button:active{background:var(--line)}
+.step input{width:46px;height:42px;border:0;text-align:center;font:600 17px var(--text);background:transparent;color:var(--fg);-moz-appearance:textfield}
+.step input::-webkit-outer-spin-button,.step input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+.fields{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:560px){.fields{grid-template-columns:1fr}}
+label{display:grid;gap:5px;font-size:14px;color:var(--muted)}
+label.full{grid-column:1/-1}
+input[type=text],input[type=tel],input[type=email],textarea{font:16px var(--text);color:var(--fg);background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:11px 12px;width:100%}
+textarea{resize:vertical;min-height:60px}
+input:focus-visible,textarea:focus-visible,button:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.check{display:flex;gap:10px;align-items:flex-start;font-size:15px;color:var(--fg);grid-column:1/-1}
+.check input{width:20px;height:20px;margin-top:2px;accent-color:var(--accent)}
+.warnbox{background:var(--warn-soft);color:var(--warn);border-radius:10px;padding:10px 12px;font-size:14px;grid-column:1/-1}
+aside{position:sticky;top:calc(env(safe-area-inset-top, 0px) + 16px);background:var(--soft);border-radius:14px;padding:18px}
+@media (max-width:860px){aside{position:static}}
+.lines{display:grid;gap:6px;font-size:14.5px;font-variant-numeric:tabular-nums}
+.line{display:flex;justify-content:space-between;gap:10px}
+.line span:first-child{min-width:0}
+.line.disc{color:var(--ok)}
+.line.muted{color:var(--muted)}
+.sep{border-top:1px solid var(--line);margin:8px 0}
+.total{display:flex;justify-content:space-between;align-items:baseline;font:500 26px var(--display);margin-top:4px}
+.total small{font:400 13px var(--text);color:var(--muted)}
+.badge{display:inline-block;background:var(--ok-soft);color:var(--ok);border-radius:999px;padding:3px 10px;font-size:13px;font-weight:600;margin:10px 0 0}
+.tips{display:grid;gap:6px;margin-top:12px}
+.tip{background:var(--bg);border:1px dashed var(--accent);border-radius:10px;padding:8px 10px;font-size:13.5px}
+.tip b{color:var(--accent)}
+.empty{color:var(--muted);font-size:14px}
+.actions{display:grid;gap:8px;margin-top:16px}
+.btn{display:block;text-align:center;text-decoration:none;font:600 16px var(--text);padding:13px 14px;border-radius:10px;border:1px solid var(--accent);color:var(--accent);background:transparent;cursor:pointer}
+.btn.primary{background:var(--accent);color:var(--accent-ink)}
+.btn[aria-disabled="true"]{opacity:.45;pointer-events:none}
+.note{font-size:12.5px;color:var(--muted);margin-top:10px}
+.row-confirm{display:grid;grid-template-columns:1fr 1fr;gap:8px;align-items:center;font-size:14px}
+.row-confirm span{grid-column:1/-1}
+.err{font-size:13.5px;color:var(--warn);margin-top:8px}
+.contact{font-size:14px;color:var(--muted);margin-top:14px}
+.contact b{color:var(--fg)}
+.conds{display:grid;grid-template-columns:1fr 1fr;gap:10px 22px;font-size:14px;color:var(--muted)}
+.conds b{color:var(--fg)}
+@media (max-width:560px){.conds{grid-template-columns:1fr}}
+footer{font-size:12.5px;color:var(--muted);padding-block:18px 28px;border-top:1px solid var(--line)}
+@media (prefers-reduced-motion: reduce){*{transition:none!important}}
+</style>
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}img{max-width:100%}</style>
+</head>
+<body>
+
+<div class="hero"><div class="wrap">
+  <div class="brand"><b>BLOOM BUTLERS</b><span>Distributeur exclusif de Nader Distilleries</span></div>
+  <h1>Bon de <em>précommande</em></h1>
+  <div class="deliv">
+    <div class="l1">Précommandez avant le <b>vendredi 4 décembre</b>, livraison prévue la <b>semaine du 14 décembre</b>.</div>
+    <div class="l2">Nous lançons notre activité : cette date est indicative et vous est confirmée par SMS ou WhatsApp 48 h à l'avance. D'ici là, vous pouvez modifier ou annuler sans frais. <b>Rien à payer aujourd'hui.</b></div>
+  </div>
+</div></div>
+
+<div class="wrap">
+<main>
+  <div>
+    <section>
+      <h2>Votre précommande</h2>
+      <p class="hint">Indiquez le nombre de caisses. Les offres s'appliquent toutes seules : le prix final s'affiche dans le récapitulatif.</p>
+      <div id="products"></div>
+    </section>
+
+    <section>
+      <h2>Vous</h2>
+      <p class="hint">Le minimum pour vous identifier. Nous complétons la facturation à partir de votre Kbis.</p>
+      <div class="fields">
+        <label>Enseigne<input type="text" id="enseigne" autocomplete="organization"></label>
+        <label>Responsable<input type="text" id="responsable" autocomplete="name"></label>
+        <label>Téléphone<input type="tel" id="tel" autocomplete="tel" inputmode="tel"></label>
+        <label>E-mail<input type="email" id="email" autocomplete="email"></label>
+        <label class="full">Adresse de livraison<input type="text" id="adresse" autocomplete="street-address" placeholder="N°, rue, code postal, ville"></label>
+        <div class="warnbox" id="zoneWarn" hidden>Nous livrons pour l'instant Paris et la petite couronne (92, 93, 94). Pour une autre adresse, contactez-nous.</div>
+        <label class="check"><input type="checkbox" id="kbis"> Je vous envoie mon Kbis (photo ou PDF) par WhatsApp ou e-mail.</label>
+        <label class="full">Un mot pour nous (facultatif)<textarea id="message" rows="2" placeholder="Jour de fermeture, créneau de réception, question…"></textarea></label>
+      </div>
+    </section>
+
+    <section>
+      <h2>Bon à savoir</h2>
+      <div class="conds">
+        <div><b>Livraison</b> à Paris et en petite couronne (92, 93, 94), du lundi au vendredi entre 7 h et 14 h. Offerte dès 36 bouteilles ou 400 € HT ; en dessous, forfait de 25 € HT.</div>
+        <div><b>Paiement par virement</b> (instantané accepté). La facture vous est envoyée avant la livraison, qui part dès réception du règlement.</div>
+        <div><b>Commandes suivantes :</b> commandez avant 11 h 30, vous êtes livré le lendemain, dans la limite du stock disponible. Pour une grosse quantité, prévenez-nous quelques jours à l'avance.</div>
+        <div><b>Casse :</b> notez-la sur le bon de livraison, devant le livreur, et prévenez-nous le jour même.</div>
+      </div>
+    </section>
+  </div>
+
+  <aside aria-live="polite">
+    <h2>Récapitulatif</h2>
+    <div id="summary"></div>
+    <div class="actions">
+      <a class="btn primary" id="sendBB" target="_blank" rel="noopener" aria-disabled="true">Envoyer ma précommande par WhatsApp</a>
+      <a class="btn" id="sendClient" target="_blank" rel="noopener" aria-disabled="true">Envoyer le récapitulatif au client</a>
+      <button class="btn" id="copy" type="button" disabled>Copier le récapitulatif</button>
+      <button class="btn" id="reset" type="button">Nouveau bon (vider le formulaire)</button>
+      <div class="row-confirm" id="confirmReset" hidden>
+        <span>Effacer cette précommande ?</span>
+        <button class="btn primary" id="resetYes" type="button">Oui, effacer</button>
+        <button class="btn" id="resetNo" type="button">Annuler</button>
+      </div>
+    </div>
+    <div class="err" id="err"></div>
+    <p class="note">La précommande est confirmée quand nous recevons votre message. Prix franco HT, droits d'accise inclus. Réservé aux professionnels.</p>
+    <div class="contact">SMS · WhatsApp <b id="bbPhone">+33 6 31 06 55 05</b><br>bloombutlers@naderdistilleries.com</div>
+  </aside>
+</main>
+</div>
+
+<footer><div class="wrap">Bloom Butlers, SASU au capital de 3 000 € · 46 rue La Fayette, 75009 Paris · RCS Paris 132 079 567 · TVA FR18132079567 · Distributeur exclusif de Nader Distilleries. L'abus d'alcool est dangereux pour la santé, à consommer avec modération.</div></footer>
+
+<script>
+(() => {
+'use strict';
+const BB_WHATSAPP = '33631065505';
+const LIVRAISON_PREVUE = 'semaine du 14 décembre';
+// Produits : prix franco HT par bouteille (cent.), bouteilles par caisse
+const P = [
+  {k:'xii',  g:'Gins Mystic Grove · 70 cl · caisse de 6', n:'Chapter XII',  d:'Mediterranean Dry · 47 %', bt:6,  pb:2250, rv:'En boutique 39,90 € TTC · la dose de 5 cl 1,61 € HT', gin:true},
+  {k:'ix',   n:'Chapter IX',   d:'Blue Indigo · 43 %',       bt:6,  pb:2550, rv:'En boutique 44,90 € TTC · la dose de 5 cl 1,82 € HT', gin:true},
+  {k:'viii', n:'Chapter VIII', d:'Golden Saffron · 43 %',    bt:6,  pb:2900, rv:'En boutique 51,90 € TTC · la dose de 5 cl 2,07 € HT', gin:true},
+  {k:'dec',  n:'Caisse découverte', d:'2 XII + 2 IX + 2 VIII', bt:6, pb:2567, caisse:15400, offre:14800, rv:'Les 3 gins pour essayer · 148 € au lieu de 154 € · livraison offerte'},
+  {k:'arak', g:'Arak · 75 cl · caisse de 12', n:'Arak Baalbak', d:'Triple distillé · 53 %', bt:12, pb:2150, rv:'En boutique 38,90 € TTC · le verre de 4 cl 1,15 € HT'},
+  {k:'rouge',g:'Vins Domaine des Princes · 75 cl · caisse de 12', n:'Syrah Cabernet Sauvignon 2023', d:'Rouge · 13 %', bt:12, pb:880, rv:'En boutique 14,90 € TTC · le verre de 12,5 cl 1,47 € HT', vin:true},
+  {k:'blanc',n:'Sauvignon Blanc 2024', d:'Blanc · 12 %', bt:12, pb:880, rv:'En boutique 14,90 € TTC · le verre de 12,5 cl 1,47 € HT', vin:true},
+  {k:'rose', n:'Tempranillo 2024', d:'Rosé · 11 %', bt:12, pb:880, rv:'En boutique 14,90 € TTC · le verre de 12,5 cl 1,47 € HT', vin:true},
+];
+const caissePrix = p => p.caisse ?? p.pb * p.bt;
+const eur = c => (c/100).toLocaleString('fr-FR',{minimumFractionDigits:2,maximumFractionDigits:2}) + ' €';
+
+// ---------- calcul (fonction pure) ----------
+function calc(q){
+  const n = k => Math.max(0, Math.floor(+q[k] || 0));
+  const brut = P.reduce((t,p)=>t + n(p.k)*caissePrix(p), 0);          // avant remise (seuil de livraison)
+  const bouteilles = P.reduce((t,p)=>t + n(p.k)*p.bt, 0);
+  const caisses = P.reduce((t,p)=>t + n(p.k), 0);
+  const ginC = n('xii') + n('ix') + n('viii');
+  const vinC = n('rouge') + n('blanc') + n('rose');
+  // 17 + 1 : une bouteille offerte par tranche de 3 caisses de gin, la moins chère du lot
+  const g17n = Math.floor(ginC/3);
+  const ginBt = []; ['xii','ix','viii'].forEach(k=>{ const p=P.find(x=>x.k===k); for(let i=0;i<n(k)*6;i++) ginBt.push(p.pb); });
+  ginBt.sort((a,b)=>a-b);
+  const g17 = ginBt.slice(0,g17n).reduce((t,v)=>t+v,0);
+  const a23 = Math.floor(n('arak')/2) * 2150;                         // 23 + 1 sur 2 caisses
+  const v11 = vinC >= 4 ? vinC * 880 : 0;                             // 11 + 1 dès 4 caisses
+  const v51 = vinC >= 6 ? Math.floor(vinC/6) * 12*880 : 0;            // 5 + 1 dès 6 caisses (Volume)
+  const dec = n('dec') * 600;                                         // caisse découverte 148 € au lieu de 154 €
+  const spiritBrut = n('xii')*13500 + n('ix')*15300 + n('viii')*17400 + n('dec')*15400 + n('arak')*25800;
+  const pack = Math.min(n('xii'),n('ix'),n('viii'),n('arak')) * 5040; // pack 4 spiritueux − 7 %
+  const pct7 = spiritBrut >= 100000 ? Math.round(spiritBrut*0.07) : 0;
+
+  // Offres de lancement : cumulables, une offre par caisse
+  const lanc = [];
+  if(dec) lanc.push({l:`Caisse découverte (${n('dec')})`, v:dec});
+  if(g17) lanc.push({l:`Gins 17 + 1 (${g17n} bouteille${g17n>1?'s':''} offerte${g17n>1?'s':''})`, v:g17});
+  if(a23) lanc.push({l:`Arak 23 + 1 (${Math.floor(n('arak')/2)} bouteille${n('arak')>=4?'s':''} offerte${n('arak')>=4?'s':''})`, v:a23});
+  if(v11) lanc.push({l:`Vins 11 + 1 (${vinC} bouteilles offertes)`, v:v11});
+  // Conditions Volume : une seule offre spiritueux (la meilleure) + la meilleure offre vin
+  const vol = [];
+  const sp = [{l:`Gins 17 + 1`, v:g17},{l:`Arak 23 + 1`, v:a23},{l:`Pack 4 spiritueux − 7 %`, v:pack},{l:`− 7 % dès 1 000 € HT de spiritueux`, v:pct7}].sort((a,b)=>b.v-a.v)[0];
+  if(sp.v) vol.push(sp);
+  if(v51 >= v11 && v51) vol.push({l:`Vins 5 + 1 (${Math.floor(vinC/6)} caisse${vinC>=12?'s':''} offerte${vinC>=12?'s':''})`, v:v51});
+  else if(v11) vol.push({l:`Vins 11 + 1 (${vinC} bouteilles offertes)`, v:v11});
+  const sum = a => a.reduce((t,x)=>t+x.v,0);
+  const useVol = sum(vol) > sum(lanc);
+  const offres = useVol ? vol : lanc;   // la caisse découverte n'existe pas en conditions Volume : elle y compte à 154 €
+  const remise = sum(offres);
+  const livraisonOfferte = caisses===0 || bouteilles >= 36 || brut >= 40000 || n('dec') > 0;
+  const livraison = livraisonOfferte ? 0 : 2500;
+  const ht = brut - remise + livraison;
+  const tva = Math.round(ht * 0.2);
+  // Pistes pour payer moins
+  const tips = [];
+  if(caisses && !livraisonOfferte){ const bt = 36-bouteilles, eu = 40000-brut; tips.push(`Encore <b>${bt} bouteilles</b> ou <b>${eur(eu)}</b> HT et la livraison est offerte (− 25 €).`); }
+  if(ginC % 3 === 2) tips.push(`Ajoutez <b>1 caisse de gin</b> : une bouteille de plus vous est offerte (17 + 1).`);
+  if(n('arak') % 2 === 1) tips.push(`Ajoutez <b>1 caisse d'arak</b> : la 24e bouteille vous est offerte (23 + 1).`);
+  if(vinC >= 2 && vinC < 4) tips.push(`Ajoutez <b>${4-vinC} caisse${4-vinC>1?'s':''} de vin</b> : la 12e bouteille de chaque caisse vous est offerte (11 + 1).`);
+  return {brut, bouteilles, caisses, offres, remise, livraison, livraisonOfferte, ht, tva, ttc:ht+tva, regime: useVol ? 'Conditions Volume' : (remise? 'Offres de lancement' : ''), tips};
+}
+window.__calc = calc;
+
+// ---------- interface ----------
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const q = {};
+$('#products').innerHTML = P.map(p => `${p.g?`<div class="grp">${esc(p.g)}</div>`:''}
+  <div class="prod" data-k="${p.k}">
+    <div>
+      <div class="n">${esc(p.n)} <small>${esc(p.d)}</small></div>
+      <div class="pr">${p.offre? '148,00 € la caisse <s style="color:var(--muted)">154,00 €</s>' : `${eur(p.pb)} la bouteille · ${eur(caissePrix(p))} la caisse`}</div>
+      <div class="rv">${esc(p.rv)}</div>
+    </div>
+    <div class="step">
+      <button type="button" data-d="-1" aria-label="Retirer une caisse de ${esc(p.n)}">−</button>
+      <input type="number" id="q_${p.k}" min="0" max="99" inputmode="numeric" value="0" aria-label="Caisses de ${esc(p.n)}">
+      <button type="button" data-d="1" aria-label="Ajouter une caisse de ${esc(p.n)}">+</button>
+    </div>
+  </div>`).join('');
+
+$('#products').addEventListener('click', e => {
+  const b = e.target.closest('button[data-d]'); if(!b) return;
+  const k = b.closest('.prod').dataset.k, i = $('#q_'+k);
+  i.value = Math.max(0, Math.min(99, (parseInt(i.value,10)||0) + (+b.dataset.d)));
+  update();
+});
+$('#products').addEventListener('input', update);
+['enseigne','responsable','tel','email','adresse','kbis','message'].forEach(id => $('#'+id).addEventListener('input', update));
+
+function readQ(){ P.forEach(p => { q[p.k] = Math.max(0, parseInt($('#q_'+p.k).value,10) || 0); }); return q; }
+function client(){ return { enseigne:$('#enseigne').value.trim(), responsable:$('#responsable').value.trim(), tel:$('#tel').value.trim(), email:$('#email').value.trim(), adresse:$('#adresse').value.trim(), kbis:$('#kbis').checked, message:$('#message').value.trim() }; }
+function waNumber(t){ let d = (t||'').replace(/[^\d+]/g,''); if(d.startsWith('+')) d = d.slice(1); else if(d.startsWith('00')) d = d.slice(2); else if(/^0\d{9}$/.test(d)) d = '33' + d.slice(1); return /^\d{8,15}$/.test(d) ? d : ''; }
+
+function recap(r, c){
+  const L = [];
+  L.push('PRÉCOMMANDE BLOOM BUTLERS · ' + new Date().toLocaleDateString('fr-FR'));
+  L.push('');
+  L.push('Enseigne : ' + (c.enseigne || '—'));
+  if(c.responsable) L.push('Responsable : ' + c.responsable);
+  L.push('Téléphone : ' + (c.tel || '—') + (c.email ? ' · ' + c.email : ''));
+  L.push('Livraison : ' + (c.adresse || 'adresse à préciser'));
+  L.push('');
+  P.forEach(p => { if(q[p.k]) L.push(`• ${q[p.k]} × ${p.n} (${q[p.k]*p.bt} bt) : ${eur(q[p.k]*caissePrix(p))}`); });
+  L.push('');
+  L.push('Total avant remise : ' + eur(r.brut) + ' HT');
+  r.offres.forEach(o => L.push(`${o.l} : − ${eur(o.v)}`));
+  L.push('Livraison : ' + (r.livraison ? eur(r.livraison) + ' HT' : 'offerte'));
+  L.push(`TOTAL : ${eur(r.ht)} HT · ${eur(r.ttc)} TTC (TVA ${eur(r.tva)})`);
+  L.push('');
+  L.push(`Livraison prévue la ${LIVRAISON_PREVUE}, date indicative confirmée 48 h avant. Rien à payer aujourd'hui ; modifiable ou annulable sans frais jusqu'à confirmation de la date. Paiement par virement avant livraison.`);
+  L.push('Kbis : ' + (c.kbis ? 'envoyé à part' : 'à envoyer'));
+  if(c.message) L.push('Message : ' + c.message);
+  return L.join('\n');
+}
+
+let lastText = '';
+function update(){
+  readQ();
+  const r = calc(q), c = client();
+  document.querySelectorAll('.prod').forEach(el => el.classList.toggle('on', q[el.dataset.k] > 0));
+  const zone = (c.adresse.match(/\b(\d{5})\b/)||[])[1];
+  $('#zoneWarn').hidden = !zone || /^(75|92|93|94)/.test(zone);
+  let h = '';
+  if(!r.caisses){ h = '<p class="empty">Ajoutez des caisses pour voir le prix.</p>'; }
+  else {
+    h += '<div class="lines">';
+    P.forEach(p => { if(q[p.k]) h += `<div class="line"><span>${q[p.k]} × ${esc(p.n)}</span><span>${eur(q[p.k]*caissePrix(p))}</span></div>`; });
+    h += '<div class="sep"></div>';
+    h += `<div class="line muted"><span>${r.caisses} caisse${r.caisses>1?'s':''} · ${r.bouteilles} bouteilles</span><span>${eur(r.brut)}</span></div>`;
+    r.offres.forEach(o => h += `<div class="line disc"><span>${esc(o.l)}</span><span>− ${eur(o.v)}</span></div>`);
+    h += `<div class="line ${r.livraison?'':'disc'}"><span>Livraison</span><span>${r.livraison? eur(r.livraison) : 'offerte'}</span></div>`;
+    h += '<div class="sep"></div>';
+    h += `<div class="total"><span>Total HT</span><span>${eur(r.ht)}</span></div>`;
+    h += `<div class="line muted"><span>TVA 20 % ${eur(r.tva)}</span><span>${eur(r.ttc)} TTC</span></div>`;
+    h += '</div>';
+    if(r.remise) h += `<span class="badge">${esc(r.regime)} : vous économisez ${eur(r.remise)}</span>`;
+    if(r.tips.length) h += '<div class="tips">' + r.tips.map(t=>`<div class="tip">${t}</div>`).join('') + '</div>';
+  }
+  $('#summary').innerHTML = h;
+
+  const missing = [];
+  if(!r.caisses) missing.push('au moins une caisse');
+  if(!c.enseigne) missing.push("l'enseigne");
+  if(!waNumber(c.tel)) missing.push('un numéro de téléphone');
+  const ok = !missing.length;
+  $('#err').textContent = ok ? '' : (r.caisses || c.enseigne || c.tel ? 'Pour envoyer, il manque : ' + missing.join(', ') + '.' : '');
+  lastText = recap(r, c);
+  const enc = encodeURIComponent(lastText);
+  const sb = $('#sendBB'), sc = $('#sendClient');
+  sb.href = ok ? `https://wa.me/${BB_WHATSAPP}?text=${enc}` : '#';
+  sb.setAttribute('aria-disabled', String(!ok));
+  sc.href = ok ? `https://wa.me/${waNumber(c.tel)}?text=${enc}` : '#';
+  sc.setAttribute('aria-disabled', String(!ok));
+  $('#copy').disabled = !ok;
+  try { localStorage.setItem('bb-precommande-brouillon', JSON.stringify({q, c})); } catch(e) {}
+}
+
+$('#copy').addEventListener('click', async () => {
+  const b = $('#copy');
+  try { await navigator.clipboard.writeText(lastText); b.textContent = 'Récapitulatif copié'; }
+  catch(e){ const t = document.createElement('textarea'); t.value = lastText; document.body.appendChild(t); t.select(); try{ document.execCommand('copy'); b.textContent = 'Récapitulatif copié'; }catch(_){ b.textContent = 'Sélectionnez le texte pour le copier'; } t.remove(); }
+  setTimeout(() => b.textContent = 'Copier le récapitulatif', 2500);
+});
+
+$('#reset').addEventListener('click', () => { $('#confirmReset').hidden = false; $('#reset').hidden = true; });
+$('#resetNo').addEventListener('click', () => { $('#confirmReset').hidden = true; $('#reset').hidden = false; });
+$('#resetYes').addEventListener('click', () => {
+  P.forEach(p => $('#q_'+p.k).value = 0);
+  ['enseigne','responsable','tel','email','adresse','message'].forEach(k => $('#'+k).value = '');
+  $('#kbis').checked = false;
+  $('#confirmReset').hidden = true; $('#reset').hidden = false;
+  update(); window.scrollTo({top:0});
+});
+
+// Reprendre un brouillon commencé sur cet appareil
+try {
+  const s = JSON.parse(localStorage.getItem('bb-precommande-brouillon') || 'null');
+  if(s){ P.forEach(p => { if(s.q?.[p.k]) $('#q_'+p.k).value = s.q[p.k]; });
+    ['enseigne','responsable','tel','email','adresse','message'].forEach(k => { if(s.c?.[k]) $('#'+k).value = s.c[k]; });
+    $('#kbis').checked = !!s.c?.kbis; }
+} catch(e) {}
+update();
+})();
+</script>
+
+</body>
+</html>
